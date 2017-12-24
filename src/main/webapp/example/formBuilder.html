@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>表单构建器</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="../favicon.ico"> 
+   <!-- bootstrap & fontawesome -->
+<link rel="stylesheet"
+	href="../static/aceadmin/assets/css/bootstrap.css" />
+<link rel="stylesheet"
+	href="../static/plugin/font-awesome-4.7.0/css/font-awesome.css" />
+
+<!-- page specific plugin styles -->
+<link rel="stylesheet"
+	href="../static/aceadmin/assets/css/jquery-ui.css" />
+
+<!-- text fonts -->
+<link rel="stylesheet"
+	href="../static/aceadmin/assets/css/ace-fonts.css" />
+	<link rel="stylesheet" href="../static/aceadmin/assets/css/jquery-ui.custom.css" />
+		<link rel="stylesheet" href="../static/aceadmin/assets/css/chosen.css" />
+	<link rel="stylesheet" href="../static/aceadmin/assets/css/bootstrap-datepicker3.css" />
+		<link rel="stylesheet" href="../static/aceadmin/assets/css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="../static/aceadmin/assets/css/daterangepicker.css" />
+		<link rel="stylesheet" href="../static/aceadmin/assets/css/bootstrap-datetimepicker.css" />
+<!-- ace styles -->
+<link rel="stylesheet"
+	href="../static/aceadmin/assets/css/ace.css"
+	class="ace-main-stylesheet" id="main-ace-style" />
+
+<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../static/aceadmin/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../static/aceadmin/assets/css/ace-ie.css" />
+		<![endif]-->
+
+<!-- inline styles related to this page -->
+
+<!-- ace settings handler -->
+<script src="../static/aceadmin/assets/js/ace-extra.js"></script>
+
+<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+<!--[if lte IE 8]>
+		<script src="../static/aceadmin/assets/js/html5shiv.js"></script>
+		<script src="../static/aceadmin/assets/js/respond.js"></script>
+		<![endif]-->
+    <link href="../static/plugin/animate/css/animate.min.css" rel="stylesheet">
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <style>
+        .droppable-active {
+            background-color: #ffe !important;
+        }
+
+        .tools a {
+            cursor: pointer;
+            font-size: 80%;
+        }
+
+        .form-body .col-md-6,
+        .form-body .col-md-12 {
+            min-height: 400px;
+        }
+
+        .draggable {
+            cursor: move;
+        }
+    </style>
+
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-5">
+            <div class="widget-box">
+											<div class="widget-header">
+												<h5 class="widget-title">元素</h5>
+
+												<!-- #section:custom/widget-box.toolbar -->
+												<div class="widget-toolbar">
+													<div class="widget-menu">
+														<a href="#" data-action="settings" data-toggle="dropdown">
+															<i class="ace-icon fa fa-bars"></i>
+														</a>
+
+														<ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+															<li>
+																<a data-toggle="tab" href="#dropdown1">Option#1</a>
+															</li>
+
+															<li>
+																<a data-toggle="tab" href="#dropdown2">Option#2</a>
+															</li>
+														</ul>
+													</div>
+
+													<a href="#" data-action="fullscreen" class="orange2">
+														<i class="ace-icon fa fa-expand"></i>
+													</a>
+
+													<a href="#" data-action="reload">
+														<i class="ace-icon fa fa-refresh"></i>
+													</a>
+
+													<a href="#" data-action="collapse">
+														<i class="ace-icon fa fa-chevron-up"></i>
+													</a>
+
+													<a href="#" data-action="close">
+														<i class="ace-icon fa fa-times"></i>
+													</a>
+												</div>
+
+												<!-- /section:custom/widget-box.toolbar -->
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+												   <div class="alert alert-info draggable">
+                            拖拽左侧的表单元素到右侧区域，即可生成相应的HTML代码，表单代码，轻松搞定！
+                        </div>
+															<div id="accordion" class="accordion-style2" >
+					<div class="group">
+						<h3 class="accordion-header">文本输入</h3>
+						<div style="overflow-x:hidden;">
+							<form role="form" class="form-horizontal m-t">
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">文本框：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                    <span class="help-block m-b-none">说明文字</span>
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">文本域：</label>
+                                <div class="col-sm-9">
+                                    <textarea name="" class="form-control" placeholder="请输入文本"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">密码框：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">下拉列表：</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="">
+                                        <option>选项 1</option>
+                                        <option>选项 2</option>
+                                        <option>选项 3</option>
+                                        <option>选项 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">文件域：</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">纯文本：</label>
+
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">这里是纯文字信息</p>
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label" >单选框：
+                                </label>
+
+                                <div class="col-sm-9">
+                                	<div class="radio">
+										<label> <input name="form-field-radio" type="radio"
+											class="ace" /> <span class="lbl"> radio option 1</span>
+										</label> <label> <input name="form-field-radio" type="radio"
+											class="ace" /> <span class="lbl"> radio option 2</span>
+										</label>
+									</div>
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">复选框：</label>
+
+                                <div class="col-sm-9">
+                                  <div class="checkbox">
+										<label> <input name="form-field-checkbox" 
+											type="checkbox" class="ace"  id="computations"/> <span class="lbl">
+												选项1</span>
+										</label> <label> <input name="form-field-checkbox"
+											type="checkbox" class="ace" /> <span class="lbl">
+												选项2</span>
+										</label>
+										<label> <input name="form-field-checkbox"
+											type="checkbox" class="ace" /> <span class="lbl">
+												选项3</span>
+										</label>
+									</div>
+                                </div>
+                            </div>
+                            
+                            	
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group draggable">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">保存内容</button>
+                                    <button class="btn btn-white" type="submit">取消</button>
+                                </div>
+                            </div>
+                        </form>
+						</div>
+					</div>
+					<div class="group">
+						<h3 class="accordion-header">开关</h3>
+						<div style="overflow-x:hidden;">
+							<form role="form" class="form-horizontal m-t">
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关1：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关2：</label>
+                                <div class="col-sm-9">
+										<label>
+													<input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关3：</label>
+                                <div class="col-sm-9">
+										<label>
+													<input name="switch-field-1" class="ace ace-switch ace-switch-3" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关4：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+														<span class="lbl" data-lbl="CUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOM"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关5：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch ace-switch-4" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关6：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch ace-switch-5" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关7：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">开关8：</label>
+                                <div class="col-sm-9">
+										<label>
+														<input name="switch-field-1" class="ace ace-switch ace-switch-7" type="checkbox" />
+														<span class="lbl"></span>
+													</label>
+													</div>
+									</div>
+							</form>
+							</div>
+					</div>
+			
+					 <div class="group">
+						<h3 class="accordion-header">Spinners</h3>
+						<div style="overflow-x:hidden;">
+							<form role="form" class="form-horizontal m-t">
+							 <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">text：</label>
+                                <div class="col-sm-9">
+											<input type="text" id="spinner1" />
+													</div>
+									</div>
+							</form>
+							</div>
+							</div>
+							
+							<div class="group">
+						<h3 class="accordion-header">时间</h3>
+						<div style="overflow-x:hidden;overflow-y: auto;">
+							<form role="form" class="form-horizontal m-t">
+						 <div class="form-group draggable">
+								 <label class="col-sm-3 control-label">text：</label>
+								<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+																</div>
+							<div class="form-group draggable">
+							 <label class="col-sm-3 control-label">text：</label>
+								<div class="col-sm-9">
+																<div class="input-daterange input-group">
+																	<input type="text" class="input-sm form-control" name="start" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-exchange"></i>
+																	</span>
+
+																	<input type="text" class="input-sm form-control" name="end" />
+																</div>
+
+																<!-- /section:plugins/date-time.datepicker -->
+															</div>
+							</div>									
+						 <div class="form-group draggable">
+								 <label class="col-sm-3 control-label">text：</label>
+								 <div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+							
+																	<input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" />
+																</div>
+							</div> 
+							 <div class="form-group draggable">
+								 <label class="col-sm-3 control-label">text：</label>
+								<div class="input-group bootstrap-timepicker">
+															<input id="timepicker1" type="text" class="form-control" />
+															<span class="input-group-addon">
+																<i class="fa fa-clock-o bigger-110"></i>
+															</span>
+														</div>
+							</div> 
+							<div class="form-group draggable">
+								 <label class="col-sm-3 control-label">text：</label>
+								<div class="input-group">
+															<input id="date-timepicker1" type="text" class="form-control" />
+															<span class="input-group-addon">
+																<i class="fa fa-clock-o bigger-110"></i>
+															</span>
+														</div>
+							</div> 
+							</form>
+							</div>
+							</div>
+							
+							<div class="group">
+						<h3 class="accordion-header">附件</h3>
+						<div style="overflow-x:hidden;">
+							<form role="form" class="form-horizontal m-t">
+							 <div class="form-group draggable">
+							  <label class="col-sm-3 control-label">text：</label>
+															<div class="col-xs-12 col-sm-9">
+																<!-- #section:custom/file-input -->
+																<input type="file" id="id-input-file-2" />
+															</div>
+														</div>
+
+														<div class="form-group draggable">
+														 <label class="col-sm-3 control-label">text：</label>
+															<div class="col-xs-12 col-sm-9">
+																<input multiple="" type="file" id="id-input-file-3" />
+
+																<!-- /section:custom/file-input -->
+															</div>
+														</div>
+							</form>
+							</div>
+							</div>
+<div class="group">
+						<h3 class="accordion-header">selectBox</h3>
+						<div style="overflow-x:hidden;">
+							<form role="form" class="form-horizontal m-t">
+							<div class="form-group draggable">
+							 <label class="col-sm-3 control-label">多选：</label>
+								<div class="col-sm-9">
+									<select multiple="" class="chosen-select form-control" id="form-field-select-4" data-placeholder="Choose a State..." style="width:300px;">
+																<option value="">  </option>
+																<option value="AL">Alabama</option>
+																<option value="AK">Alaska</option>
+																<option value="AZ">Arizona</option>
+																<option value="AR">Arkansas</option>
+																<option value="CA">California</option>
+																<option value="CO">Colorado</option>
+																<option value="CT">Connecticut</option>
+																<option value="DE">Delaware</option>
+																<option value="FL">Florida</option>
+																<option value="GA">Georgia</option>
+																<option value="HI">Hawaii</option>
+																<option value="ID">Idaho</option>
+																<option value="IL">Illinois</option>
+																<option value="IN">Indiana</option>
+																<option value="IA">Iowa</option>
+																<option value="KS">Kansas</option>
+																<option value="KY">Kentucky</option>
+																<option value="LA">Louisiana</option>
+																<option value="ME">Maine</option>
+																<option value="MD">Maryland</option>
+																<option value="MA">Massachusetts</option>
+																<option value="MI">Michigan</option>
+																<option value="MN">Minnesota</option>
+																<option value="MS">Mississippi</option>
+																<option value="MO">Missouri</option>
+																</select>
+								</div>
+							</div>
+
+							<div class="form-group draggable">
+							 <label class="col-sm-3 control-label">单选：</label>
+								<div class="col-sm-9">
+									<select class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a State..." style="width:300px;">
+																<option value="">  </option>
+																<option value="AL">Alabama</option>
+																<option value="AK">Alaska</option>
+																<option value="AZ">Arizona</option>
+																<option value="AR">Arkansas</option>
+																<option value="CA">California</option>
+																<option value="CO">Colorado</option>
+																<option value="CT">Connecticut</option>
+																<option value="DE">Delaware</option>
+																<option value="FL">Florida</option>
+																<option value="GA">Georgia</option>
+																<option value="HI">Hawaii</option>
+																<option value="ID">Idaho</option>
+																<option value="IL">Illinois</option>
+																<option value="IN">Indiana</option>
+																<option value="IA">Iowa</option>
+																<option value="KS">Kansas</option>
+																<option value="KY">Kentucky</option>
+																<option value="LA">Louisiana</option>
+																<option value="ME">Maine</option>
+																<option value="MD">Maryland</option>
+																<option value="MA">Massachusetts</option>
+																<option value="MI">Michigan</option>
+																<option value="MN">Minnesota</option>
+																<option value="MS">Mississippi</option>
+																<option value="MO">Missouri</option>
+																</select>
+								</div>
+							</div>
+							</form>
+							</div>
+							</div>
+					</div>
+												</div>
+											</div>
+										</div>
+										
+               
+            </div>
+            <div class="col-sm-7">
+            <div class="widget-box">
+											<div class="widget-header">
+												<h5 class="widget-title">拖拽左侧表单元素到此区域</h5>
+
+												<!-- #section:custom/widget-box.toolbar -->
+												<div class="widget-toolbar">
+													<div class="widget-menu">
+														<a href="#" data-action="settings" data-toggle="dropdown">
+															<i class="ace-icon fa fa-bars"></i>
+														</a>
+
+														<ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+															<li>
+																<a data-toggle="tab" href="#dropdown1">Option#1</a>
+															</li>
+
+															<li>
+																<a data-toggle="tab" href="#dropdown2">Option#2</a>
+															</li>
+														</ul>
+													</div>
+
+													<a href="#" data-action="fullscreen" class="orange2">
+														<i class="ace-icon fa fa-expand"></i>
+													</a>
+
+													<a href="#" data-action="reload">
+														<i class="ace-icon fa fa-refresh"></i>
+													</a>
+
+													<a href="#" data-action="collapse">
+														<i class="ace-icon fa fa-chevron-up"></i>
+													</a>
+
+													<a href="#" data-action="close">
+														<i class="ace-icon fa fa-times"></i>
+													</a>
+												</div>
+
+												<!-- /section:custom/widget-box.toolbar -->
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+													<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                           		<button type="submit" class="btn btn-warning btn-sm pull-left" data-clipboard-text="testing" id="copy-to-clipboard">复制代码</button>
+                        <div class="ibox-tools pull-right">
+                         请选择显示的列数：
+                            <select id="n-columns">
+                                <option value="1">显示1列</option>
+                                <option value="2">显示2列</option>
+                            </select>
+                        </div>
+                    </div>
+					<hr style="clear:both;">
+                    <div class="ibox-content" >
+                        <div class="row form-body form-horizontal m-t">
+                            <div class="col-md-12 droppable sortable">
+                            </div>
+                            <div class="col-md-6 droppable sortable" style="display: none;">
+                            </div>
+                            <div class="col-md-6 droppable sortable" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										</div>
+            </div>
+        </div>
+
+    </div>
+
+ 	
+	<!-- basic scripts -->
+	<!--[if !IE]> -->
+	<script type="text/javascript">
+			window.jQuery || document.write("<script src='../static/aceadmin/assets/js/jquery.js'>"+"<"+"/script>");
+		</script>
+
+	<!-- <![endif]-->
+
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='../static/aceadmin/assets/js/jquery1x.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+	<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../static/aceadmin/assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+	<script src="../static/aceadmin/assets/js/bootstrap.js"></script>
+
+	<!-- page specific plugin scripts -->
+
+	<!--[if lte IE 8]>
+		  <script src="../static/aceadmin/assets/js/excanvas.js"></script>
+		<![endif]-->
+	<script src="../static/aceadmin/assets/js/jquery-ui.custom.js"></script>
+	<script src="../static/aceadmin/assets/js/jquery-ui.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/jquery.ui.touch-punch.js"></script>
+
+	<!-- ace scripts -->
+	<script src="../static/aceadmin/assets/js/date-time/bootstrap-datepicker.js"></script>
+		<script src="../static/aceadmin/assets/js/date-time/bootstrap-timepicker.js"></script>
+		<script src="../static/aceadmin/assets/js/date-time/moment.js"></script>
+		<script src="../static/aceadmin/assets/js/date-time/daterangepicker.js"></script>
+		<script src="../static/aceadmin/assets/js/date-time/bootstrap-datetimepicker.js"></script>
+			<script src="../static/aceadmin/assets/js/autosize.js"></script>
+		<script src="../static/aceadmin/assets/js/jquery.inputlimiter.1.3.1.js"></script>
+		<script src="../static/aceadmin/assets/js/jquery.maskedinput.js"></script>
+		<script src="../static/aceadmin/assets/js/bootstrap-tag.js"></script>
+			<script src="../static/aceadmin/assets/js/chosen.jquery.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.scroller.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.colorpicker.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.fileinput.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.typeahead.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.wysiwyg.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.spinner.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.treeview.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.wizard.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.aside.js"></script>
+	<script src="../static/aceadmin/assets/js/ace/ace.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.ajax-content.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.touch-drag.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.sidebar.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.submenu-hover.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.widget-box.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.settings.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.settings-rtl.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.settings-skin.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.widget-on-reload.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+
+
+	<!-- the following scripts are used in demo only for onpage help and you don't need them -->
+	<link rel="stylesheet"
+		href="../static/aceadmin/assets/css/ace.onpage-help.css" />
+	<link rel="stylesheet"
+		href="../static/aceadmin/docs/assets/js/themes/sunburst.css" />
+
+	<script type="text/javascript"> ace.vars['base'] = '../static/aceadmin'; </script>
+	<script
+		src="../static/aceadmin/assets/js/ace/elements.onpage-help.js"></script>
+	<script
+		src="../static/aceadmin/assets/js/ace/ace.onpage-help.js"></script>
+	<script src="../static/aceadmin/docs/assets/js/rainbow.js"></script>
+	<script
+		src="../static/aceadmin/docs/assets/js/language/generic.js"></script>
+	<script
+		src="../static/aceadmin/docs/assets/js/language/html.js"></script>
+	<script
+		src="../static/aceadmin/docs/assets/js/language/css.js"></script>
+	<script
+		src="../static/aceadmin/docs/assets/js/language/javascript.js"></script>
+	<script type="text/javascript"
+		src="../static/plugin/bootstrap-dialog/js/bootstrap-dialog.js"></script>
+	<script type="text/javascript"
+		src="../static/plugin/toastr/toastr.min.js"></script>
+
+    <!-- From Builder -->
+    <script src="../static/plugin/beautifyhtml/beautifyhtml.js"></script>
+
+    <script>
+        $(document).ready(function () {
+		$('.chosen-select').chosen({allow_single_deselect:true}); 
+        	$('#id-input-file-3').ace_file_input({
+					style: 'well',
+					btn_choose: 'Drop files here or click to choose',
+					btn_change: null,
+					no_icon: 'ace-icon fa fa-cloud-upload',
+					droppable: true,
+					thumbnail: 'small'//large | fit
+					//,icon_remove:null//set null, to hide remove/reset button
+					/**,before_change:function(files, dropped) {
+						//Check an example below
+						//or examples/file-upload.html
+						return true;
+					}*/
+					/**,before_remove : function() {
+						return true;
+					}*/
+					,
+					preview_error : function(filename, error_code) {
+						//name of the file that failed
+						//error_code values
+						//1 = 'FILE_LOAD_FAILED',
+						//2 = 'IMAGE_LOAD_FAILED',
+						//3 = 'THUMBNAIL_FAILED'
+						//alert(error_code);
+					}
+			
+				}).on('change', function(){
+					//console.log($(this).data('ace_input_files'));
+					//console.log($(this).data('ace_input_method'));
+				});
+        	$('#id-input-file-1 , #id-input-file-2').ace_file_input({
+					no_file:'No File ...',
+					btn_choose:'Choose',
+					btn_change:'Change',
+					droppable:false,
+					onchange:null,
+					thumbnail:false //| true | large
+					//whitelist:'gif|png|jpg|jpeg'
+					//blacklist:'exe|php'
+					//onchange:''
+					//
+				});
+
+        	var spinner = $( "#spinner1" ).spinner({
+    			create: function( event, ui ) {
+    				//add custom classes and icons
+    				$(this)
+    				.next().addClass('btn btn-success').html('<i class="ace-icon fa fa-plus"></i>')
+    				.next().addClass('btn btn-danger').html('<i class="ace-icon fa fa-minus"></i>')
+    				
+    				//larger buttons on touch devices
+    				if('touchstart' in document.documentElement) 
+    					$(this).closest('.ui-spinner').addClass('ui-spinner-touch');
+    			}
+    		});
+			$('.date-picker').datepicker({
+					autoclose: true,
+					todayHighlight: true
+				})
+				//show datepicker when clicking on the icon
+				.next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+			
+				//or change it into a date range picker
+				$('.input-daterange').datepicker({autoclose:true});
+				$('input[name=date-range-picker]').daterangepicker({
+					'applyClass' : 'btn-sm btn-success',
+					'cancelClass' : 'btn-sm btn-default',
+					locale: {
+						applyLabel: '确定',
+						cancelLabel: '取消',
+					}
+				})
+				.prev().on(ace.click_event, function(){
+					$(this).next().focus();
+				});
+
+				$('#timepicker1').timepicker({
+					minuteStep: 1,
+					showSeconds: true,
+					showMeridian: false,
+					disableFocus: true
+				}).on('focus', function() {
+					$('#timepicker1').timepicker('showWidget');
+				}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+				
+				
+				
+				
+				$('#date-timepicker1').datetimepicker({
+				 icons: {
+					time: 'fa fa-clock-o',
+					date: 'fa fa-calendar',
+					up: 'fa fa-chevron-up',
+					down: 'fa fa-chevron-down',
+					previous: 'fa fa-chevron-left',
+					next: 'fa fa-chevron-right',
+					today: 'fa fa-arrows ',
+					clear: 'fa fa-trash',
+					close: 'fa fa-times'
+				 }
+				}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+        	$( "#accordion" ).accordion({
+    			collapsible: true ,
+    			heightStyle: "content",
+    			animate: 250,
+    			header: ".accordion-header"
+    		}).sortable({
+    			axis: "y",
+    			handle: ".accordion-header",
+    			stop: function( event, ui ) {
+    				// IE doesn't register the blur when sorting
+    				// so trigger focusout handlers to remove .ui-state-focus
+    				ui.item.children( ".accordion-header" ).triggerHandler( "focusout" );
+    			}
+    		});
+            setup_draggable();
+
+            $("#n-columns").on("change", function () {
+                var v = $(this).val();
+                if (v === "1") {
+                    var $col = $('.form-body .col-md-12').toggle(true);
+                    $('.form-body .col-md-6 .draggable').each(function (i, el) {
+                        $(this).remove().appendTo($col);
+                    })
+                    $('.form-body .col-md-6').toggle(false);
+                } else {
+                    var $col = $('.form-body .col-md-6').toggle(true);
+                    $(".form-body .col-md-12 .draggable").each(function (i, el) {
+                        $(this).remove().appendTo(i % 2 ? $col[1] : $col[0]);
+                    });
+                    $('.form-body .col-md-12').toggle(false);
+                }
+            });
+
+            $("#copy-to-clipboard").on("click", function () {
+                var $copy = $(".form-body").clone().appendTo(document.body);
+                $copy.find(".tools, :hidden").remove();
+                $.each(["draggable", "droppable", "sortable", "dropped",
+    "ui-sortable", "ui-draggable", "ui-droppable", "form-body"], function (i, c) {
+                    $copy.find("." + c).removeClass(c).removeAttr("style");
+                })
+                var html = html_beautify($copy.html());
+                $copy.remove();
+
+                $modal = get_modal(html).modal("show");
+                $modal.find(".btn").remove();
+                $modal.find(".modal-title").html("复制HTML代码");
+                $modal.find(":input:first").select().focus();
+
+                return false;
+            })
+
+
+        });
+
+        var setup_draggable = function () {
+            $(".draggable").draggable({
+                appendTo: "body",
+                helper: "clone"
+            });
+            $(".droppable").droppable({
+                accept: ".draggable",
+                helper: "clone",
+                hoverClass: "droppable-active",
+                drop: function (event, ui) {
+                    $(".empty-form").remove();
+                    var $orig = $(ui.draggable)
+                    if (!$(ui.draggable).hasClass("dropped")) {
+                        var $el = $orig
+                            .clone()
+                            .addClass("dropped")
+                            .css({
+                                "position": "static",
+                                "left": null,
+                                "right": null
+                            })
+                            .appendTo(this);
+
+                        // update id
+                        var id = $orig.find(":input").attr("id");
+
+                        if (id) {
+                            id = id.split("-").slice(0, -1).join("-") + "-" + (parseInt(id.split("-").slice(-1)[0]) + 1)
+
+                            $orig.find(":input").attr("id", id);
+                            $orig.find("label").attr("for", id);
+                        }
+
+                        // tools
+                        $('<p class="tools col-sm-12 col-sm-offset-3">\
+						<a class="edit-link">编辑HTML<a> | \
+						<a class="remove-link">移除</a></p>').appendTo($el);
+                    } else {
+                        if ($(this)[0] != $orig.parent()[0]) {
+                            var $el = $orig
+                                .clone()
+                                .css({
+                                    "position": "static",
+                                    "left": null,
+                                    "right": null
+                                })
+                                .appendTo(this);
+                            $orig.remove();
+                        }
+                    }
+                }
+            }).sortable();
+
+        }
+
+        var get_modal = function (content) {
+            var modal = $('<div class="modal" style="overflow: auto;" tabindex="-1">\
+			<div class="modal-dialog">\
+				<div class="modal-content">\
+					<div class="modal-header">\
+						<a type="button" class="close"\
+							data-dismiss="modal" aria-hidden="true">&times;</a>\
+						<h4 class="modal-title">编辑HTML</h4>\
+					</div>\
+					<div class="modal-body ui-front">\
+						<textarea class="form-control" \
+							style="min-height: 200px; margin-bottom: 10px;\
+							font-family: Monaco, Fixed">' + content + '</textarea>\
+						<button class="btn btn-success btn-sm">更新HTML</button>\
+					</div>\
+				</div>\
+			</div>\
+			</div>').appendTo(document.body);
+
+            return modal;
+        };
+
+        $(document).on("click", ".edit-link", function (ev) {
+            var $el = $(this).parent().parent();
+            var $el_copy = $el.clone();
+
+            var $edit_btn = $el_copy.find(".edit-link").parent().remove();
+
+            var $modal = get_modal(html_beautify($el_copy.html())).modal("show");
+            $modal.find(":input:first").focus();
+            $modal.find(".btn-success").click(function (ev2) {
+                var html = $modal.find("textarea").val();
+                if (!html) {
+                    $el.remove();
+                } else {
+                    $el.html(html);
+                    $edit_btn.appendTo($el);
+                }
+                $modal.modal("hide");
+                return false;
+            })
+        });
+        
+        
+
+        $(document).on("click", ".remove-link", function (ev) {
+            $(this).parent().parent().remove();
+        });
+    </script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+</body>
+
+</html>

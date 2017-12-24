@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../static/plugin/highlight/styles/darcula.css" />
+<script type="text/javascript" src="../../static/plugin/highlight/highlight.pack.js"></script>
+</head>
+<body>
+<div class="code">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+	...<br>
+	&lt;link href="themes/prism.css" rel="stylesheet" /&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+	...<br>
+	&lt;script src="prism.js"&gt;&lt;/script&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;</div>
+<script type="text/javascript" src="../../static/aceadmin/assets/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	hljs.configure({useBR: true});
+
+	$('div.code').each(function(i, block) {
+	  hljs.highlightBlock(block);
+	});
+	});
+</script>
+</body>
+</html>

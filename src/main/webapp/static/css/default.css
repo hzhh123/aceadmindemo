@@ -1,0 +1,36 @@
+/**
+bootstrap-dialog对话框
+*/
+.modal-header {
+	padding: 10px
+}
+/*关闭按钮一直显示*/
+.bootstrap-dialog-close-button {
+	display: block !important;
+	margin-top:-5px!important;
+}
+
+.modal-body {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+.modal-dialog {
+	height: calc(100% - 20px) !important;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.modal {
+	padding-right: 0px !important;
+}
+/**modal-body显示滚动条*/
+.modal-scroll .modal-content {
+	height: 100%
+}
+
+.modal-body {
+	height: calc(100% - 92px);
+	overflow-x: hidden;
+	overflow-y: auto;
+}
