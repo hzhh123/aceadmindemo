@@ -24,9 +24,7 @@ public class PageInfo {
     private String msg="";
     private long count; // 总记录 
     private List data; //显示的记录  
-    @JsonIgnore
     private int page; // 当前页 
-    @JsonIgnore
     private int limit; // 每页显示的记录数 
     @JsonIgnore
     private Map<String, Object> condition; //查询条件

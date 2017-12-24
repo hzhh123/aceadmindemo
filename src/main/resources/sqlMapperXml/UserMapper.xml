@@ -8,4 +8,17 @@
 		<result column="username" property="username" />
 		<result column="password" property="password" />
 	</resultMap>
+	
+	<select id="page" resultType="Map">
+	    select 
+	    t.id,
+	    t.username,
+	    t.password 
+	    from user t
+	    <where>
+	        <if test="username!=null and username!=''">
+	            t.username like concat( '%'  ,  '#{username}' , '%' )
+	        </if>
+	    </where>
+	</select>
 </mapper>

@@ -2,6 +2,7 @@ package cn.edu.service;
 
 import com.baomidou.mybatisplus.service.IService;
 
+import cn.edu.common.result.PageInfo;
 import cn.edu.model.User;
 
 
@@ -14,4 +15,5 @@ import cn.edu.model.User;
  * @since 2017-10-29
  */
 public interface IUserService extends IService<User> {
+	void page(PageInfo info);
 }
