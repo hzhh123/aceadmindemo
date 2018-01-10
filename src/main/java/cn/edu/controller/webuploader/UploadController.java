@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -28,6 +30,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import cn.edu.common.base.BaseController;
+import cn.edu.utils.file.FileUtil;
 
 @Controller
 public class UploadController extends BaseController{
@@ -210,5 +213,16 @@ public class UploadController extends BaseController{
         String childpath=prefix+fileName;
         File targetFile=new File(dirFie, childpath);
         return targetFile;
+    }
+    
+    
+    //文件打包下载
+    @RequestMapping("/download")
+    public void download(HttpServletResponse response) throws Exception {
+    	List<File>files=new ArrayList<File>();
+    	files.add(new File("d:/11.jpg"));
+    	files.add(new File("d:/sougou.jpg"));
+    	String zipFilePath="d:/create.rar";
+    	FileUtil.downLoadFiles(files,response,zipFilePath);
     }
 }

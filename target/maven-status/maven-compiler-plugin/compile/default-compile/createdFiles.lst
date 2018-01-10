@@ -33,6 +33,7 @@ cn\edu\service\impl\UserServiceImpl.class
 cn\edu\utils\jstree\JsTreeNodeUtil.class
 cn\edu\utils\Charsets.class
 cn\edu\model\User.class
+cn\edu\utils\file\FileUtil.class
 cn\edu\utils\StringUtils.class
 cn\edu\utils\BeanUtils.class
 cn\edu\common\base\BaseController.class
